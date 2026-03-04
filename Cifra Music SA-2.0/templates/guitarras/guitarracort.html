@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+        function changeImage(element) {
+          // trocar imagem principal
+          document.getElementById("mainImg").src = element.src;
+          
+          // destacar miniatura ativa
+          document.querySelectorAll(".thumb").forEach(img => img.classList.remove("active"));
+          element.classList.add("active");
+        }
+      </script>
+
+<div class="gallery" style="justify-content: center; height: 600px;">
+
+  <div class="thumbnails">
+    <img src="https://i.postimg.cc/wjyftpcQ/cort.png" class="thumb active" onclick="changeImage(this)">
+    <img src="https://assets-musitech.fluxocore.com/v1/pro_40542_g.jpg" class="thumb" onclick="changeImage(this)">
+
+  </div>
+
+  <div class="main-image">
+    <img id="mainImg" src="https://i.postimg.cc/wjyftpcQ/cort.png">
+  </div>
+
+  <div class="product-info">
+    <h1 class="product-title">Guitarra Cort KX 700 Evertune OPN</h1>
+
+    <div class="ratings">
+      <div class="review-summary">
+        ★★★★★ <span id="avgRating">0.0</span> 
+        (<span id="totalReviews">0</span> avaliações)
+      </div>
+    </div>
+
+    <div class="price-block">
+      <span class="price-current">R$ 8,757.00</span>
+      <span class="price-installments">Em até 10x sem juros</span>
+
+      <a class="btn-whatsapp"
+        target="_blank"
+        href="https://wa.me/5547984234968?text=Olá!%20Tenho%20interesse%20no%20Violão%20Takamine%20FT340%20BS.">
+        Comprar pelo WhatsApp
+      </a>
+      <button class="btn-cart" onclick="addToCart()">
+        Adicionar ao Carrinho
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="txt">
+  <span class="detalhes">Detalhes do Produto</span>
+  <h3>Guitarra Cort KX 700 Evertune OPN</h3>
+  <p>A KX 700 EverTune é a guitarra mais ousada da série KX, com contorno do corpo completamente redesenhado para um visual mais agressivo e orgânico, conjunto Seymour Duncan® Sentient & Nazgul Humbucker para aquele rosnado do centro da terra e sistema de ponte EverTune® para estabilidade de afinação máxima.
+
+ </p>
+</div>
+
+<br>
+
+<div class="review-section" data-page-id="guitarracort">
+  <h2>Avaliações</h2>
+
+  <div class="review-summary">
+    ⭐ <span id="topAvgRating">0.0</span>
+    (<span id="topTotalReviews">0</span> avaliações)
+  </div>
+
+  <div class="review-form">
+    <div id="starContainer" class="star-rating" aria-label="Escolha a nota">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+
+    <textarea id="reviewText" placeholder="Seu comentário..."></textarea>
+    <button id="submitReview">Enviar Avaliação</button>
+  </div>
+
+  <h3>Comentários</h3>
+  <div id="reviewsList" aria-live="polite"></div>
+</div>
+
+<script src="/static/avaliacao.js"></script>
+
+<!-- SCRIPT DO CARRINHO -->
+<script>
+function addToCart() {
+    const product = {
+        id: 6,
+        name: "Guitarra Cort KX 700 Evertune OPN",
+        price: 8757.00,
+        image: "https://i.postimg.cc/wjyftpcQ/cort.png",
+        qty: 1
+    };
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let existing = cart.find(item => item.id === product.id);
+
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Produto adicionado ao carrinho!");
+}
+</script> 
+{% endblock %}

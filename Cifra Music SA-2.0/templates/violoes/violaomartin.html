@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Java Script-->
+<script>
+        function changeImage(element) {
+          // trocar imagem principal
+          document.getElementById("mainImg").src = element.src;
+          
+          // destacar miniatura ativa
+          document.querySelectorAll(".thumb").forEach(img => img.classList.remove("active"));
+          element.classList.add("active");
+        }
+      </script>
+
+<div class="gallery" style="justify-content: center; height: 600px;">
+
+  <div class="thumbnails">
+    <img src="https://i.postimg.cc/B6B8nr1F/Violao-Martin-frente-2ponto0.webp" class="thumb active" onclick="changeImage(this)">
+    <img src="https://i.postimg.cc/8c8VxcCS/bunda.webp" class="thumb" onclick="changeImage(this)">
+    <img src="https://i.postimg.cc/MKP9G4yR/viola.webp" class="thumb" onclick="changeImage(this)">
+  </div>
+
+  <div class="main-image">
+    <img id="mainImg" src="https://i.postimg.cc/sgTZYdn3/Violao-Martin-frente.webp">
+  </div>
+
+  <div class="product-info">
+    <h1 class="product-title">Violão Martin D-X2E Natural
+X Series Eletroacústico Aço</h1>
+
+    <div class="ratings">
+      <div class="review-summary">
+        ★★★★★ <span id="avgRating">0.0</span> 
+        (<span id="totalReviews">0</span> avaliações)
+      </div>
+    </div>
+
+    <div class="price-block">
+      <span class="price-current">R$ 8.999,10</span>
+      <span class="price-installments">Em até 10x sem juros</span>
+
+      <a class="btn-whatsapp"
+        target="_blank"
+        href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20no%20Violão%20Takamine%20FT340%20BS.">
+        Comprar pelo WhatsApp
+      </a>
+      <button class="btn-cart" onclick="addToCart()">
+        Adicionar ao Carrinho
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="txt">
+  <span class="detalhes">Detalhes do Produto</span>
+  <h3>Violão Martin D-X2E Natural
+X Series Eletroacústico Aço</h3>
+  <p>O violão Martin D-X2E une tradição e modernidade em um instrumento versátil e resistente. Com o clássico formato Dreadnought, seu tampo em spruce com acabamento acetinado oferece um som alto, projetivo e com graves marcantes, ideal para qualquer estilo e nível de músico.</p>
+</div>
+
+<br>
+
+<div class="review-section" data-page-id="violaomartin">
+  <h2>Avaliações</h2>
+
+  <div class="review-summary">
+    ⭐ <span id="topAvgRating">0.0</span>
+    (<span id="topTotalReviews">0</span> avaliações)
+  </div>
+
+  <div class="review-form">
+    <div id="starContainer" class="star-rating" aria-label="Escolha a nota">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+
+    <textarea id="reviewText" placeholder="Seu comentário..."></textarea>
+    <button id="submitReview">Enviar Avaliação</button>
+  </div>
+
+  <h3>Comentários</h3>
+  <div id="reviewsList" aria-live="polite"></div>
+</div>
+
+<script src="/static/avaliacao.js"></script>
+
+<!-- SCRIPT DO CARRINHO -->
+<script>
+function addToCart() {
+    const product = {
+        id: 2,
+        name: "Violão Martin D-X2E Natural X Series Eletroacústico Aço",
+        price: 8999.10,
+        image: "https://i.postimg.cc/sgTZYdn3/Violao-Martin-frente.webp",
+        qty: 1
+    };
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let existing = cart.find(item => item.id === product.id);
+
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Produto adicionado ao carrinho!");
+}
+</script> 
+{% endblock %}

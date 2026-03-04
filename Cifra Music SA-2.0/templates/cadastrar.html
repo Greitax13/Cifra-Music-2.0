@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="form-section">
+    <h2>Cadastrar Dados Pessoais</h2>
+
+    <form method="POST" class="form-card">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+    
+        <label for="senha_cliente">Senha:</label>
+        <input type="text" id="senha_cliente" name="senha_cliente" required>
+          
+        <button class="btnsalvar" type="submit">Salvar</button>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mensagens">
+                {% for categoria, mensagem in messages %}
+                    <p class="{{ categoria }}">{{ mensagem }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+    </form>
+</section>
+{% endblock %}

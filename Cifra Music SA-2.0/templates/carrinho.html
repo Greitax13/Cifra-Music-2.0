@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<h1>Carrinho de Compras</h1>
+
+<div id="cartItems"></div>
+
+<h2>Total: R$ <span id="cartTotal">0.00</span></h2>
+
+<button onclick="clearCart()">Limpar Carrinho</button>
+
+<script>
+      
+document.addEventListener("DOMContentLoaded", () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let message = "Olá! Tenho interesse nos seguintes produtos:";
+
+    const list = document.getElementById("cartItems");
+    const totalSpan = document.getElementById("cartTotal");
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.qty;
+
+        
+        list.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}" width="80">
+                <strong>${item.name}</strong>
+                <span>Quantidade: ${item.qty}</span>
+                <span>Total: R$ ${(item.price * item.qty).toFixed(2)}</span>
+            </div>
+        `;
+        //Mensagem do WhatsApp
+        message += ` ${item.name} \n`;
+    });
+
+    totalSpan.textContent = total.toFixed(2);
+
+    let link = `https://wa.me/5599999999999?text=${encodeURIComponent(message)}`;
+
+    document.getElementById("btn-whatsapp").href = link;
+});
+
+
+function clearCart() {
+    localStorage.removeItem("cart");
+    window.location.reload();
+}
+</script>
+<!--href="https://chat.whatsapp.com/DF13H0zFc9V9nNTLHIuiAF${item.name} !-->
+<a id="btn-whatsapp" target="_blank" class="btn btn-success">Comprar pelo WhatsApp</a>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cifra Music</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="https://i.postimg.cc/j2PNnr8k/Design-sem-nome-(2).png">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="/">
+                    <img src="https://i.postimg.cc/fLYjmZFm/logo-1-removebg-preview.png" alt="LOGO" class="logo-header">
+                </a>
+            </div>
+            <div class="menu-header">
+                {% if session.get('logado') %}
+                <a class="sair" style="text-decoration: none;" href="{{ url_for('logout') }}">Sair</a>
+                {% endif %}
+            
+                <a class="nav-logout" href="/carrinho"> <img src="https://i.postimg.cc/c4KLNG1P/Captura-de-tela-2025-12-08-104543-removebg-preview.png" alt="Carrinho"></a>
+                </div>
+        </nav>
+    </header>
+    <div>
+
+        <nav>
+            <div class="categoria">
+                <nav>
+                    <tr>
+                        <td> <img src="https://i.postimg.cc/XJvNydGb/violao.png" alt="violoes"
+                                style="align-items: center; width: 45px;"></td>
+                        <td> <a style="text-decoration: none;" href="/violoes">Violões </a></td>
+
+                        <td> <img src="https://i.postimg.cc/265v8qCW/guitarra.png" alt="Guitarras"
+                                style="align-items: center; width: 45px;"></td>
+                        <td> <a style="text-decoration: none;" href="/guitarras">Guitarras</a></td>
+
+                        <td> <img src="https://i.postimg.cc/8CzmXkjq/instrumento-musical.png"
+                                style="align-items: center; width: 45px;" alt="Acessórios">
+                        </td> <a style="text-decoration: none;" href="/acessorios">Acessórios </a>
+                    </tr>
+                    <tr>
+                    </tr>
+
+                </nav>
+
+            </div>
+        </nav>
+    </div>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+    <footer>
+        <p style="text-align: center;">Desenvovido Por Os Python</p>
+    </footer>
+</body>
+
+</html>

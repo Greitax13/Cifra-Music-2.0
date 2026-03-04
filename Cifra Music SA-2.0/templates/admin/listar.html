@@ -1,0 +1,35 @@
+{% extends "admin.html" %}
+
+{% block content %}
+<section class="list-section">
+    <h2>Lista de Dados Pessoais</h2>
+
+    {% if dados %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Idade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in dados %}
+            <tr>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.telefone }}</td>
+                <td>{{ item.idade }}</td>
+                <td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+         <p>Nenhum dado cadastrado ainda.</p>
+    {% endif %}
+</section>
+{% endblock %}
+

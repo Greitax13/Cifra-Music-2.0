@@ -1,0 +1,46 @@
+{% extends "admin.html" %}
+
+{% block content %}
+<section class="list-section">
+    <h2>Lista de Usuários</h2>
+
+    {% if dados %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Login</th>
+                <th>Senha</th>
+                <th>Administrador</th>
+                <th>Ações</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in dados %}
+            <tr>
+                <td>{{ item.nm_usuario }}</td>
+                <td>{{ item.nm_login }}</td>
+                <td>{{ item.ds_senha }}</td>
+                <td>
+                    {% if item.inadmin == '1' %}
+                        Sim
+                    {% else %}
+                        Não
+                    {% endif %}
+                </td>
+                 <td>
+                    <a href="{{ url_for('editar_usuario', id=item.id) }}" class="btn-editar">Editar</a>
+                    <a href="{{ url_for('excluir_usuario', id=item.id) }}" 
+                       class="btn-excluir" 
+                       onclick="return confirm('Tem certeza que deseja excluir este usuário?');">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Nenhum usuário cadastrado ainda.</p>
+    {% endif %}
+</section>
+{% endblock %}

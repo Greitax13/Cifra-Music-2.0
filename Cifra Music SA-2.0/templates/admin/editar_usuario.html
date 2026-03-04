@@ -1,0 +1,26 @@
+{% extends "admin.html" %}
+
+{% block content %}
+<section class="form-section">
+    <h2>Editar Usuário</h2>
+
+    <form method="POST" class="form-card">
+        <label>Nome:</label>
+        <input type="text" name="login" value="{{ usuario.nm_usuario }}" required>
+
+        <label>Login:</label>
+        <input type="text" name="senha" value="{{ usuario.nm_login }}" required>
+
+        <label>Administrador:</label>
+        <select name="inadmin">
+            <option value="1" {% if usuario.inadmin == '1' %}selected{% endif %}>Sim</option>
+            <option value="2" {% if usuario.inadmin == '2' %}selected{% endif %}>Não</option>
+        </select>
+
+        <button class="btnsalvar" type="submit">Salvar</button>
+    </form>
+</section>
+
+<style>
+</style>
+{% endblock %}
